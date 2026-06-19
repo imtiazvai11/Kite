@@ -116,6 +116,39 @@
             </div>
         </div>
     </div>
+<script>
+    const postButton = document.querySelector('.btn-post');
+    const textarea = document.querySelector('textarea');
+    const feedContainer = document.querySelector('.feed-container');
 
+    postButton.addEventListener('click', function() {
+        const postText = textarea.value.trim();
+        
+        if(postText === "") {
+            alert("Please write something first!");
+            return;
+        }
+
+        // নতুন পোস্টের জন্য বক্স তৈরি
+        const newPost = document.createElement('div');
+        newPost.className = 'post';
+        
+        newPost.innerHTML = `
+            <div class="post-author">My Profile</div>
+            <div class="post-time">Just now</div>
+            <div class="post-content">${postText}</div>
+            <div class="post-actions">
+                <button class="btn-like" onclick="this.style.color='#1877f2'">👍 Like</button>
+            </div>
+        `;
+
+        // নতুন পোস্টটি ফিডের ওপরের দিকে যোগ করা (পোস্ট বক্সের ঠিক নিচে)
+        const createPostBox = document.querySelector('.create-post');
+        createPostBox.parentNode.insertBefore(newPost, createPostBox.nextSibling);
+
+        // লেখার বক্স খালি করা
+        textarea.value = "";
+    });
+</script>
 </body>
 </html>
