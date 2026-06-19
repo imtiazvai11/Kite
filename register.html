@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kite - Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #1877f2;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: #42b72a;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #36a420;
+        }
+        .login-link {
+            display: block;
+            margin-top: 15px;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Create a New Account</h2>
+        <p>It's quick and easy.</p>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email or Mobile Number" required>
+            <input type="password" placeholder="New Password" required>
+            <button type="submit" class="btn-submit">Sign Up</button>
+        </form>
+        <a href="index.html" class="login-link">Already have an account?</a>
+    </div>
+
+</body>
+</html>
