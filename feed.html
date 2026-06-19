@@ -1,15 +1,35 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kite - News Feed</title>
     <style>
+        /* লাইট থিম (ডিফল্ট) */
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: white;
+            --text-color: #1c1e21;
+            --text-sub: #606770;
+            --border-color: #ccd0d5;
+        }
+
+        /* ডার্ক থিম কালার */
+        [data-theme="dark"] {
+            --bg-color: #18191a;
+            --card-bg: #242526;
+            --text-color: #e4e6eb;
+            --text-sub: #b0b3b8;
+            --border-color: #3e4042;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding-top: 20px;
+            transition: background 0.3s, color 0.3s;
         }
         .feed-container {
             max-width: 500px;
@@ -25,18 +45,37 @@
             font-weight: bold;
             border-radius: 8px;
             margin-bottom: 20px;
+            position: relative;
         }
+        
+        /* ডার্ক মোড বাটন */
+        .theme-toggle {
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
         .create-post {
-            background: white;
+            background: var(--card-bg);
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            border: 1px solid var(--border-color);
         }
         textarea {
             width: 100%;
             height: 60px;
-            border: 1px solid #ccd0d5;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
             border-radius: 6px;
             padding: 10px;
             box-sizing: border-box;
@@ -54,31 +93,32 @@
             cursor: pointer;
         }
         .post {
-            background: white;
+            background: var(--card-bg);
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 15px;
+            border: 1px solid var(--border-color);
         }
         .post-author {
             font-weight: bold;
-            color: #1c1e21;
+            color: var(--text-color);
             margin-bottom: 5px;
         }
         .post-time {
             font-size: 12px;
-            color: #606770;
+            color: var(--text-sub);
             margin-bottom: 10px;
         }
         .post-actions {
-            border-top: 1px solid #e4e6eb;
+            border-top: 1px solid var(--border-color);
             margin-top: 10px;
             padding-top: 10px;
         }
         .btn-like {
             background: none;
             border: none;
-            color: #606770;
+            color: var(--text-sub);
             font-weight: bold;
             cursor: pointer;
         }
@@ -90,7 +130,10 @@
 <body>
 
     <div class="feed-container">
-        <div class="header">Kite Feed</div>
+        <div class="header">
+            Kite Feed
+            <button class="theme-toggle" id="themeBtn">🌙</button>
+        </div>
 
         <div class="create-post">
             <textarea placeholder="What's on your mind?"></textarea>
@@ -103,52 +146,55 @@
             <div class="post-time">Just now</div>
             <div class="post-content">Hello Everyone! Welcome to my new social media app Kite. 🪁</div>
             <div class="post-actions">
-                <button class="btn-like">👍 Like</button>
-            </div>
-        </div>
-
-        <div class="post">
-            <div class="post-author">John Doe</div>
-            <div class="post-time">2 hours ago</div>
-            <div class="post-content">Wow, this looks amazing! Keep it up. 🔥</div>
-            <div class="post-actions">
-                <button class="btn-like">👍 Like</button>
+                <button class="btn-like" onclick="this.style.color='#1877f2'">👍 Like</button>
             </div>
         </div>
     </div>
-<script>
-    const postButton = document.querySelector('.btn-post');
-    const textarea = document.querySelector('textarea');
-    const feedContainer = document.querySelector('.feed-container');
 
-    postButton.addEventListener('click', function() {
-        const postText = textarea.value.trim();
+    <script>
+        // ডার্ক মোড অন-অফ করার লজিক
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeBtn.textContent = '☀️';
+            }
+        });
+
+        // পোস্ট করার লজিক
+        const postButton = document.querySelector('.btn-post');
+        const textarea = document.querySelector('textarea');
         
-        if(postText === "") {
-            alert("Please write something first!");
-            return;
-        }
+        postButton.addEventListener('click', function() {
+            const postText = textarea.value.trim();
+            
+            if(postText === "") {
+                alert("Please write something first!");
+                return;
+            }
 
-        // নতুন পোস্টের জন্য বক্স তৈরি
-        const newPost = document.createElement('div');
-        newPost.className = 'post';
-        
-        newPost.innerHTML = `
-            <div class="post-author">My Profile</div>
-            <div class="post-time">Just now</div>
-            <div class="post-content">${postText}</div>
-            <div class="post-actions">
-                <button class="btn-like" onclick="this.style.color='#1877f2'">👍 Like</button>
-            </div>
-        `;
+            const newPost = document.createElement('div');
+            newPost.className = 'post';
+            
+            newPost.innerHTML = `
+                <div class="post-author">My Profile</div>
+                <div class="post-time">Just now</div>
+                <div class="post-content">${postText}</div>
+                <div class="post-actions">
+                    <button class="btn-like" onclick="this.style.color='#1877f2'">👍 Like</button>
+                </div>
+            `;
 
-        // নতুন পোস্টটি ফিডের ওপরের দিকে যোগ করা (পোস্ট বক্সের ঠিক নিচে)
-        const createPostBox = document.querySelector('.create-post');
-        createPostBox.parentNode.insertBefore(newPost, createPostBox.nextSibling);
+            const createPostBox = document.querySelector('.create-post');
+            createPostBox.parentNode.insertBefore(newPost, createPostBox.nextSibling);
 
-        // লেখার বক্স খালি করা
-        textarea.value = "";
-    });
-</script>
+            textarea.value = "";
+        });
+    </script>
+
 </body>
-</html>
+</html>          
