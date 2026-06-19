@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kite - News Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding-top: 20px;
+        }
+        .feed-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .header {
+            background-color: #1877f2;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .create-post {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        .btn-post {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            float: right;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .post {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        .post-author {
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 5px;
+        }
+        .post-time {
+            font-size: 12px;
+            color: #606770;
+            margin-bottom: 10px;
+        }
+        .post-actions {
+            border-top: 1px solid #e4e6eb;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+        .btn-like {
+            background: none;
+            border: none;
+            color: #606770;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-like:hover {
+            color: #1877f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="feed-container">
+        <div class="header">Kite Feed</div>
+
+        <div class="create-post">
+            <textarea placeholder="What's on your mind?"></textarea>
+            <button class="btn-post">Post</button>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div class="post">
+            <div class="post-author">Imtiaz Ahmed</div>
+            <div class="post-time">Just now</div>
+            <div class="post-content">Hello Everyone! Welcome to my new social media app Kite. 🪁</div>
+            <div class="post-actions">
+                <button class="btn-like">👍 Like</button>
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="post-author">John Doe</div>
+            <div class="post-time">2 hours ago</div>
+            <div class="post-content">Wow, this looks amazing! Keep it up. 🔥</div>
+            <div class="post-actions">
+                <button class="btn-like">👍 Like</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
